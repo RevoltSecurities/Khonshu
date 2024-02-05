@@ -74,8 +74,6 @@ def all_help():
             -pg  ,  --ping          command  : Only do ping scans for hosts and avoid scans. {reset}
     
     {bold}{white}[{reset}{bold}{blue}DEBUG{reset}{bold}{white}]{reset}: {bold}{white}
-    
-            -hc  ,  --health-check  command  : Health check process for khonshu.
             
             -vr  ,  --version       command  : Shows Version of the Khonshu and exits:
             
