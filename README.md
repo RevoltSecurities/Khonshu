@@ -4,7 +4,7 @@ Khonshu is designed for open port scanning concurrently. It is a valuable asset 
 and penetration testers to discover open ports on targets.
 
 
-### Features:
+### Features V1.0.1:
 
 - Khonshu have ability of SYN Scan, Ping , Checks valid hosts
 - Concurrently Scans for open ports
