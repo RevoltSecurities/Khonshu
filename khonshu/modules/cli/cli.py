@@ -58,7 +58,7 @@ def cli():
         
         parser.add_argument("-rt", "--rate-limit", type=int, default=0.0)
         
-        parser.add_argument("-t", "--timeout", default=3, type=int)
+        parser.add_argument("-t", "--timeout", default=5, type=int)
                 
         parser.add_argument("-up", "--update", type=str)
         
