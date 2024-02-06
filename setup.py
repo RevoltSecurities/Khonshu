@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='Khonshu',
-    version='1.0.0',
+    version='1.0.1',
     author='D. Sanjai Kumar',
     author_email='bughunterz0047@gmail.com',
     description='Khonshu - A powerful port scanning tool written in python that detect open ports with concurrent and accurately',
