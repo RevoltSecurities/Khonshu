@@ -30,6 +30,8 @@ pip install .
 pip install git+https://github.com/sanjai-AK47/Khonshu.git
 
 ```
+![Screenshot from 2024-02-06 07-51-45](https://github.com/sanjai-AK47/Khonshu/assets/119435129/82304b29-384e-4477-9eaf-b4b8f2e6d592)
+
 
 ### Usage:
 
