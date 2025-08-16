@@ -1,0 +1,36 @@
+[project]
+name = "khonshu"
+version = "1.1.0"
+description = "Khonshu – A stealthy, concurrent port scanner written in asynchronous python that crafted for speed and accuracy."
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [
+    { name = "D. Sanjai Kumar", email = "bughunterz0047@gmail.com" }, { name = "Gokul.V", email = "th3gokul@gmail.com"} , {name="Pugalarasan K", email="0xpugal@gmail.com"}
+]
+maintainers = [
+    { name = "D. Sanjai Kumar", email = "bughunterz0047@gmail.com" }, { name = "Gokul.V", email = "th3gokul@gmail.com"} , {name="Pugalarasan K", email="0xpugal@gmail.com"}
+]
+dependencies = [
+    "aiolimiter>=1.2.1",
+    "aioping>=0.4.0",
+    "asyncio>=4.0.0",
+    "gitupdater>=1.0.0",
+    "revoltlogger>=1.0.1",
+    "revoltutils",
+    "richparser>=1.0.0",
+    "scapy>=2.6.1",
+    "shodanx==1.1.1",
+    "uvloop>=0.21.0",
+    "winloop>=0.1.91; sys_platform == 'win32'",
+]
+
+[project.scripts]
+khonshu = "khonshu.khonshu:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+revoltlogger = { git = "https://github.com/RevoltSecurities/Revoltlogger" }
+revoltutils = { git = "https://github.com/RevoltSecurities/Revoltutils" }
