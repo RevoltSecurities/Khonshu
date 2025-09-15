@@ -1,115 +1,464 @@
 
-Khonsu is a powerful port scanning tool written in python that detect open ports with concurrent and accurately.
-Khonshu is designed for open port scanning concurrently. It is a valuable asset for ethical hackers 
-and penetration testers to discover open ports on targets.
+<h1 align="center">
+  <img src="static/khonshu.png" alt="khonshu" width="300px">
+  <br>
+</h1>
+
+**Khonshu – A stealthy, concurrent port scanner written in asynchronous python that crafted for speed and accuracy.**
+
+<p align="center">
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-_red.svg"></a>
+<a href="https://github.com/RevoltSecurities/Khonshu/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat"></a>
+<a href="https://github.com/RevoltSecurities/Khonshu/releases"><img src="https://img.shields.io/github/release/RevoltSecurities/Khonshu"></a>
+</p>
+
+Khonshu is a high-performance port scanning tool written in Python that detects open ports with exceptional speed and accuracy. Khonshu is engineered for concurrent port scanning, making it an invaluable asset for ethical hackers and penetration testers to efficiently discover open ports on target systems.
+
+---
 
 
-### Features V1.0.1:
+### Features:
 
-- Khonshu have ability of SYN Scan, Ping , Checks valid hosts
-- Concurrently Scans for open ports
-- Konshu is a Platform Independent Tool
-- Khonshu automatically ensures that only authorized individuals can use the tool.
-- Provide options to configure rate-limiting for scans to avoid detection or network disruptions.
-- Scans for both IPv4/IPv6
+<h1 align="center">
+  <img src="/static/khonsu-terminal.png" alt="khonshu-terminal" width="700px">
+  <br>
+</h1>
 
+- Khonshu supports multiple advanced scan types including SYN, ACK, XMAS, NULL, FIN, UDP, and Windows scans
+- Advanced host discovery with ICMP echo, timestamp, address mask, TCP SYN/ACK, and ARP ping methods
+- Passive scanning capability using Shodan Internet Database API for stealth reconnaissance
+- Resume functionality allows continuing interrupted scans from where they left off
+- JSON output format support for better integration with other security tools
+- Custom network interface selection and DNS resolver configuration for advanced networking
+- Port state filtering to show only specific port states (open, closed, filtered, unfiltered)
+- Enhanced rate limiting up to 1000 requests per second with configurable concurrency levels
+- Retry mechanism and configurable timeouts for improved scan reliability
+- Host and port exclusion capabilities for targeted scanning strategies
+- Multiple ping methods for comprehensive host discovery and validation
+- File-based input support for ports and hosts with exclusion list functionality
+- Auto-update mechanism with update notifications to keep the tool current
+- Health check and enhanced debugging options for troubleshooting and optimization
+- Silent mode and no-color options for automated scripting and integration
+- All DNS IPs scanning to discover all IP addresses associated with a domain
+- Platform independent tool that works across different operating systems
+- Khonshu automatically ensures that only authorized individuals can use the tool
+- Scans for both IPv4/IPv6 addresses with full protocol support
+
+---
 
 ### Installation:
 
-#### Method 1:
+**Prerequisite**
+
+> **Note**: before installing khonshu, make sure to install `libpcap`.
+
+To install libcap on **Linux**: `sudo apt install -y libpcap-dev`, on **Mac**: `brew install libpcap`
+
+Khonshu can be easily installed using the modern Python package installer `uv`. This method provides the fastest and most reliable installation experience.
+
+#### Requirements:
+- Python 3.13 or higher
+- `uv` package manager
+
+#### Quick Installation:
 
 ```bash
-git clone https://github.com/sanjai-AK47/Khonshu.git
+# Install using uv (Recommended)
+uv tool install khonshu
+```
+
+#### Alternative Installation Methods:
+
+```bash
+# Install using pip
+pip install khonshu
+
+# Install from source
+git clone https://github.com/RevoltSecurities/Khonshu.git
 cd Khonshu
 pip install .
 ```
 
-### Method 2:
+#### Verify Installation:
 
 ```bash
-pip install git+https://github.com/sanjai-AK47/Khonshu.git
-
+khonshu --version
 ```
-![Screenshot from 2024-02-06 07-51-45](https://github.com/sanjai-AK47/Khonshu/assets/119435129/82304b29-384e-4477-9eaf-b4b8f2e6d592)
 
+#### Update Khonshu:
+
+```bash
+# Update using built-in updater
+khonshu --update
+
+# Or update using uv
+uv tool upgrade khonshu
+```
+
+> **Note**: The `uv tool install` method automatically handles dependencies and provides better isolation, making it the preferred installation method for Khonshu.
+
+---
 
 ### Usage:
 
 ```yaml
  khonshu -h
-    __      __                             __          
-   / /__   / /_   ____    ____    _____   / /_   __  __
-  / //_/  / __ \ / __ \  / __ \  / ___/  / __ \ / / / /
- / ,<    / / / // /_/ / / / / / (__  )  / / / // /_/ / 
-/_/|_|  /_/ /_/ \____/ /_/ /_/ /____/  /_/ /_/ \__,_/  
-                                                       
 
-    
-                     Author : D.SanjaiKumar @CyberRevoltSecurities
+ __    .__                             .__            
+|  | __|  |__    ____    ____    ______|  |__   __ __ 
+|  |/ /|  |  \  /  _ \  /    \  /  ___/|  |  \ |  |  \
+|    < |   Y  \(  <_> )|   |  \ \___ \ |   Y  \|  |  /
+|__|_ \|___|  / \____/ |___|  //____  >|___|  /|____/ 
+     \/     \/              \/      \/      \/        
 
-[Version]: Khonshu current version v1.0.0 (latest)
+                     - RevoltSecurities
 
-[DESCRIPTION]: Khonsu is a powerful port scanning tool written in python that detect open ports with concurrent and accurately
+                                                              Khonshu – A stealthy, concurrent port scanner written in asynchronous python that crafted for speed and accuracy.                                                               
 
-[Usage]: 
+[DEFAULT FLAGS]
+╭────────────┬────────────────────────────────────────╮
+│ Flag       │ Description                            │
+├────────────┼────────────────────────────────────────┤
+│ -h, --help │ show this help message and exit.       │
+├────────────┼────────────────────────────────────────┤
+│ --plain    │ display the help message in plain text │
+╰────────────┴────────────────────────────────────────╯
 
-    khonshu [options]
-    
-[OPTIONS]: 
+[INPUT]
+╭───────────────────┬──────────────────────────────────────────────────────────────────────────────╮
+│ Flag              │ Description                                                                  │
+├───────────────────┼──────────────────────────────────────────────────────────────────────────────┤
+│ -host, --host     │ hosts to scan for open ports and supports comma separated values             │
+├───────────────────┼──────────────────────────────────────────────────────────────────────────────┤
+│ -list, --list     │ file that contains list of host to scan for open ports                       │
+├───────────────────┼──────────────────────────────────────────────────────────────────────────────┤
+│ -exclude-hosts    │ hosts to exclude from the open port scan and supports comma separated values │
+├───────────────────┼──────────────────────────────────────────────────────────────────────────────┤
+│ -resume, --resume │ resume file generated by khonshu to continue the port scanning               │
+╰───────────────────┴──────────────────────────────────────────────────────────────────────────────╯
 
-    [INPUT]:
-    
-            -d   ,  --domain        string   : Domain name to scan and detect for Khonshu to discover Open Ports.
-            
-            -l   ,  --list          string   : File name that contains targets for Khonshu to discover Open Ports.
-             
-            -eh ,   --exclude-host  string   : Host to exclude from the scan , Enable it when -l or --list is given.
-                        
-    [PORTS]: 
-    
-            -p   ,  --ports         int      : Specify a port number to Khonshu for detecting and scanning open ports , [Ex: -p 80 (or) 80,443 (or) 1-1024].
-            
-            -tp  ,  --top-ports     command      : Enable it to scan only for top port that from 1-1024. 
-            
-            -pf  ,  --ports-file    string   : File name that contains port number for Khonshu to scan for that ports.
-            
-            -ep  ,  --exclude-ports int   : Port number to exclude from port scan.
-            
-            -ec  ,  --exclude-cdn   command  : Skip full scan for QAF/CDN and focus on for only 80,443 port scans. 
-             
-    [RATE-LIMIT]: 
-    
-            -c   ,  --concurrency   int      : Concurrency value for scans.
-            
-            -rt   , --rate-limit    int      : Rate limit value for sending packets to port scans.
-                        
-    [UPDATES]: 
-    
-            -up  ,  --updates       command  : Updates the khonshu for larest version (required: pip to be installed) 
-            
-    [OUTPUT]: 
-    
-            -o   ,  --output        string   : Filename to save the scans outputs. 
-            
-    
-    [SCANS]: 
-    
-            -pg  ,  --ping          command  : Only do ping scans for hosts and avoid scans. 
-    
-    [DEBUG]: 
-    
-            
-            -vr  ,  --version       command  : Shows Version of the Khonshu and exits:
-            
-            -nc  ,  --no-color      command  : Disable the Khonshu's colorised CLI outputs and info.
-            
-            -s   ,  --silent        command  : Only shows outputs and avoid other info. 
-               
+[PORT]
+╭─────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Flag                    │ Description                                                                                                        │
+├─────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -port, --port           │ ports to scan (80,443 1-65535)                                                                                     │
+├─────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -top-ports, --top-ports │ top port numbers to scan (100,1000,full-port)                                                                      │
+├─────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -port-file, --port-file │ file that contains list of port numbers to scan                                                                    │
+├─────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -ep, --exclude-ports    │ port numbers to exclude from port scanning and supports comma separated values                                     │
+├─────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -tcpt, --tcp-ports      │ comma-separated TCP port(s) to use for checking host availability via TCP SYN/ACK pings (e.g., 80,443,8080)        │
+├─────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -pst, --port-state      │ show only ports matching the specified state (e.g. open,closed,filtered,unfiltered,open|filtered) (default: open). │
+╰─────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
+[OUTPUT]
+╭──────────────┬─────────────────────────────────────────────╮
+│ Flag         │ Description                                 │
+├──────────────┼─────────────────────────────────────────────┤
+│ -o, --output │ filename to save the open port scan results │
+├──────────────┼─────────────────────────────────────────────┤
+│ -j, --json   │ enabled the output in json format           │
+╰──────────────┴─────────────────────────────────────────────╯
+
+[RATE-LIMIT]
+╭───────────────────┬──────────────────────────────────────────────────────────────────────────────────────╮
+│ Flag              │ Description                                                                          │
+├───────────────────┼──────────────────────────────────────────────────────────────────────────────────────┤
+│ -c, --concurrency │ set the concurrency level for concurrent port scanning (default: 100)                │
+├───────────────────┼──────────────────────────────────────────────────────────────────────────────────────┤
+│ -rt, --rate-limit │ set a rate limit for sending a maximum number of requests per second (default: 1000) │
+╰───────────────────┴──────────────────────────────────────────────────────────────────────────────────────╯
+
+[UPDATES]
+╭──────────────────────┬──────────────────────────────────────────╮
+│ Flag                 │ Description                              │
+├──────────────────────┼──────────────────────────────────────────┤
+│ -up, --update        │ update the khonshu to the latest version │
+├──────────────────────┼──────────────────────────────────────────┤
+│ -sup, --show-updates │ show the latest updates of khonshu       │
+╰──────────────────────┴──────────────────────────────────────────╯
+
+[HOST-DISCOVERY]
+╭─────────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────╮
+│ Flag                                │ Description                                                                      │
+├─────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
+│ -Sn, --host-discovery               │ perform only host discovery and skips the port scan                              │
+├─────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
+│ -Pn, --skip-discovery               │ skip the host discovery and directly perform port scan                           │
+├─────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
+│ -En, --enable-discovery             │ enable the host discovery before port scanning                                   │
+├─────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
+│ -tcp-syn, --tcp-syn-ping            │ performs TCP SYN ping on host (requires: -En and -Sn)                            │
+├─────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
+│ -tcp-ack, --tcp-ack-ping            │ performs TCP ACK ping on host (requires: -En and -Sn)                            │
+├─────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
+│ -icmp-ping, --icmp-echo-ping        │ performs ICMP echo request on host (requires -En and -Sn)                        │
+├─────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
+│ -it-ping, --icmp-timestamp-ping     │ performs ICMP timestamp ping request on host (requires -En and -Sn)              │
+├─────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
+│ -iam-ping, --icmp-address-mask-ping │ performs ICMP address mask ping request on host (requires -En and -Sn)           │
+├─────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
+│ -arp, --arp-ping                    │ performs Address Resolution Protocol ping request on host (requires -En and -Sn) │
+╰─────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────╯
+
+[CONFIGURATION]
+╭──────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Flag                     │ Description                                                                                                │
+├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -scan, --scan-type       │ type of port scan we need to do (supports: connect,syn,ack,xmas,null,fix,udp,windows and default: connect) │
+├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -all-ips, --scan-all-ips │ scan all ips of associated DNS record of the domain                                                        │
+├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -passive, --passive      │ run passive open port scanning using shodan Internet DB API                                                │
+├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -il, --interface-list    │ display the list of available interfaces                                                                   │
+├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -i, --interface          │ network interface to use for port scan                                                                     │
+├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -resolver, --resolver    │ custom DNS resolver to use for dns resolution                                                              │
+╰──────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+[OPTIMIZATION]
+╭─────────────────┬────────────────────────────────────────────────────────╮
+│ Flag            │ Description                                            │
+├─────────────────┼────────────────────────────────────────────────────────┤
+│ -to, --timeout  │ seconds to wait for port scanning timeout (default: 1) │
+├─────────────────┼────────────────────────────────────────────────────────┤
+│ -retry, --retry │ number of retries for open port scanning               │
+╰─────────────────┴────────────────────────────────────────────────────────╯
+
+[DEBUG]
+╭─────────────────────┬────────────────────────────────────────────╮
+│ Flag                │ Description                                │
+├─────────────────────┼────────────────────────────────────────────┤
+│ -hc, --health-check │ run the health check for the khonshu       │
+├─────────────────────┼────────────────────────────────────────────┤
+│ -debug, --debug     │ display the debugging information          │
+├─────────────────────┼────────────────────────────────────────────┤
+│ -verbose, --verbose │ increase the verbosity of khonshu          │
+├─────────────────────┼────────────────────────────────────────────┤
+│ -version, --version │ shows the version of the khonshu           │
+├─────────────────────┼────────────────────────────────────────────┤
+│ -silent, --silent   │ shows only the port scanning results       │
+├─────────────────────┼────────────────────────────────────────────┤
+│ -nc, --no-color     │ disables the colored output of the khonshu │
+╰─────────────────────┴────────────────────────────────────────────╯
+```
+---
+
+### Running Khonshu:
+
+Khonshu provides flexible scanning options for various penetration testing scenarios. Below are common usage patterns and examples.
+
+#### Basic Usage:
+
+```bash
+# Basic port scan on a single host
+khonshu -host example.com
+
+# Scan specific ports
+khonshu -host example.com -port 80,443,8080
+
+# Scan top 1000 ports
+khonshu -host example.com -top-ports 1000
 ```
 
-**INFO:** Khonshu is mainly uses root user previlege so for every scans it requires the root privilege to scan for open ports  and Khonshu have ability to handle high loads and also can give accurate results for the scan, far now
-          Khonshu handle only domains and later on Khonshu features will be updated soon on upcoming version, So it can be used for many purpose when it comes to open port scanning and hope Khonshu will help you on your penetration testing , If you like Khonshu give ⭐ and show your ❤️ for it.If you want more feature to include or give feedbacks just create a issue in [Khonshu](https://github.com/sanjai-AK47/Khonshu) or connect with me with my [Linkedin](https://www.linkedin.com/in/d-sanjai-kumar-109a7227b)
+#### Multiple Hosts:
 
+```bash
+# Scan multiple hosts
+khonshu -host example.com,target.com,test.org
 
+# Scan from host list file
+khonshu -list targets.txt
 
+# Exclude specific hosts
+khonshu -list targets.txt -exclude-hosts cdn.example.com
+```
+
+#### Advanced Scanning:
+
+```bash
+# SYN scan with custom concurrency
+khonshu -host example.com -scan syn -c 200
+
+# UDP scan with rate limiting
+khonshu -host example.com -scan udp -rt 500
+
+# Stealth scan with custom timeout
+khonshu -host example.com -scan syn -to 3 -silent
+```
+
+#### Host Discovery:
+
+```bash
+# Perform only host discovery
+khonshu -host example.com -Sn
+
+# Skip host discovery and scan directly
+khonshu -host example.com -Pn
+
+# Use ICMP ping for host discovery
+khonshu -host example.com -En -icmp-ping
+```
+
+#### Output Options:
+
+```bash
+# Save results to file
+khonshu -host example.com -o results.txt
+
+# JSON output format
+khonshu -host example.com -j -o results.json
+
+# Silent mode (results only)
+khonshu -host example.com -silent
+```
+
+#### Passive Scanning:
+
+```bash
+# Use Shodan for passive reconnaissance
+khonshu -host example.com -passive
+
+# Scan all DNS-associated IPs
+khonshu -host example.com -all-ips
+```
+
+#### Resume Scans:
+
+```bash
+# Resume interrupted scan
+khonshu -resume resume_20240101_120000.cfg
+```
+
+#### Configuration Examples:
+
+```bash
+# Custom DNS resolver and interface
+khonshu -host example.com -resolver 8.8.8.8 -i eth0
+
+# High-performance scan
+khonshu -host example.com -c 500 -rt 2000 -to 0.5
+
+# Comprehensive security assessment
+khonshu -host example.com -top-ports full-port -scan syn -En -verbose
+```
+
+> **Tip**: Use `khonshu --help` to see all available options and flags, or `khonshu --plain` for plain text help output.
+
+---
+
+### Host Discovery:
+
+Khonshu provides comprehensive host discovery capabilities to determine which hosts are alive and reachable before performing port scans. This helps optimize scanning efficiency and reduces unnecessary network traffic.
+
+#### Basic Host Discovery:
+
+```bash
+# Perform only host discovery (skip port scanning)
+khonshu -host example.com -Sn
+
+# Enable host discovery before port scanning
+khonshu -host example.com -En
+
+# Skip host discovery and scan directly
+khonshu -host example.com -Pn
+```
+
+#### ICMP-based Discovery:
+
+```bash
+# ICMP echo request (ping) - requires -En and -Sn
+khonshu -host example.com -En -Sn -icmp-ping
+
+# ICMP timestamp ping - requires -En and -Sn
+khonshu -host example.com -En -Sn -it-ping
+
+# ICMP address mask ping - requires -En and -Sn
+khonshu -host example.com -En -Sn -iam-ping
+```
+
+#### TCP-based Discovery:
+
+```bash
+# TCP SYN ping on default ports - requires -En and -Sn
+khonshu -host example.com -En -Sn -tcp-syn
+
+# TCP ACK ping - requires -En and -Sn
+khonshu -host example.com -En -Sn -tcp-ack
+
+# TCP ping on specific ports - requires -En and -Sn
+khonshu -host example.com -En -Sn -tcp-syn -tcpt 80,443,8080
+```
+
+#### ARP Discovery:
+
+```bash
+# ARP ping for local network discovery - requires -En and -Sn
+khonshu -host 192.168.1.1-254 -En -Sn -arp
+```
+
+#### Multiple Host Discovery:
+
+```bash
+# Discover multiple hosts with ICMP
+khonshu -host example.com,target.org,test.net -En -Sn -icmp-ping
+
+# Discover from host file
+khonshu -list targets.txt -En -Sn -tcp-syn
+
+# Exclude specific hosts from discovery
+khonshu -list targets.txt -En -Sn -icmp-ping -exclude-hosts router.local,printer.local
+```
+
+#### Advanced Discovery Options:
+
+```bash
+# Combine multiple discovery methods
+khonshu -host example.com -En -Sn -icmp-ping -tcp-syn -tcpt 22,80,443
+
+# Discovery with custom timeout and concurrency
+khonshu -host example.com -En -Sn -icmp-ping -to 2 -c 50
+
+# Verbose discovery output
+khonshu -host example.com -En -Sn -tcp-syn -verbose
+```
+
+#### Network Range Discovery:
+
+```bash
+# Discover all hosts in subnet
+khonshu -host 192.168.1.0/24 -En -Sn -arp
+
+# Discover hosts with custom interface
+khonshu -host 10.0.0.0/24 -En -Sn -icmp-ping -i eth0
+```
+
+#### Discovery with Output:
+
+```bash
+# Save discovery results
+khonshu -host example.com -En -Sn -icmp-ping -o discovery_results.txt
+
+# JSON format discovery output
+khonshu -host example.com -En -Sn -tcp-syn -j -o discovery.json
+
+# Silent discovery mode
+khonshu -host example.com -En -Sn -tcp-ack -silent
+```
+
+#### Discovery with Custom Configuration:
+
+```bash
+# Custom DNS resolver for discovery
+khonshu -host example.com -En -Sn -icmp-ping -resolver 8.8.8.8
+
+# Discovery with retry mechanism
+khonshu -host example.com -En -Sn -tcp-syn -retry 3 -to 5
+```
+
+> **Important**: Most discovery methods require the combination of `-En` (enable discovery) and `-Sn` (host discovery mode) flags. ICMP and raw socket operations may require root/administrator privileges. Use `-Pn` to skip discovery if you know hosts are alive but not responding to pings.
