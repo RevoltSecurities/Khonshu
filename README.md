@@ -1,4 +1,4 @@
-# Khonshu
+
 Khonsu is a powerful port scanning tool written in python that detect open ports with concurrent and accurately.
 Khonshu is designed for open port scanning concurrently. It is a valuable asset for ethical hackers 
 and penetration testers to discover open ports on targets.
