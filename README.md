@@ -33,15 +33,8 @@ Khonshu is a high-performance port scanning tool written in Python that detects 
 - Port state filtering to show only specific port states (open, closed, filtered, unfiltered)
 - Enhanced rate limiting up to 1000 requests per second with configurable concurrency levels
 - Retry mechanism and configurable timeouts for improved scan reliability
-- Host and port exclusion capabilities for targeted scanning strategies
 - Multiple ping methods for comprehensive host discovery and validation
-- File-based input support for ports and hosts with exclusion list functionality
-- Auto-update mechanism with update notifications to keep the tool current
-- Health check and enhanced debugging options for troubleshooting and optimization
-- Silent mode and no-color options for automated scripting and integration
 - All DNS IPs scanning to discover all IP addresses associated with a domain
-- Platform independent tool that works across different operating systems
-- Khonshu automatically ensures that only authorized individuals can use the tool
 - Scans for both IPv4/IPv6 addresses with full protocol support
 
 ---
