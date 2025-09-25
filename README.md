@@ -1,4 +1,3 @@
-**Khonshu – A stealthy, concurrent port scanner written in asynchronous python that crafted for speed and accuracy.**
 <h1 align="center">
   <img src="static/khonshu.png" alt="khonshu" width="300px">
   <br>
@@ -10,7 +9,8 @@
 <a href="https://github.com/RevoltSecurities/Khonshu/releases"><img src="https://img.shields.io/github/release/RevoltSecurities/Khonshu"></a>
 </p>
 
-Khonshu is a high-performance port scanning tool written in Python that detects open ports with exceptional speed and accuracy. Khonshu is engineered for concurrent port scanning, making it an invaluable asset for ethical hackers and penetration testers to efficiently discover open ports on target systems.
+**Khonshu – A stealthy, concurrent port scanner written in asynchronous python that crafted for speed and accuracy.**
+
 
 ---
 
