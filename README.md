@@ -22,8 +22,7 @@
   <br>
 </h1>
 
-- Khonshu supports multiple advanced scan types including SYN, ACK, XMAS, NULL, FIN, UDP, and Windows scans
-- Advanced host discovery with ICMP echo, timestamp, address mask, TCP SYN/ACK, and ARP ping methods
+- Accurate, concurrent, and highly scalable scanning engine with distributed workers, adjustable concurrency, and deterministic results.
 - Passive scanning capability using Shodan Internet Database API for stealth reconnaissance
 - Resume functionality allows continuing interrupted scans from where they left off
 - JSON output format support for better integration with other security tools
@@ -95,16 +94,18 @@ uv tool upgrade khonshu
 ```yaml
  khonshu -h
 
- __    .__                             .__            
-|  | __|  |__    ____    ____    ______|  |__   __ __ 
-|  |/ /|  |  \  /  _ \  /    \  /  ___/|  |  \ |  |  \
-|    < |   Y  \(  <_> )|   |  \ \___ \ |   Y  \|  |  /
-|__|_ \|___|  / \____/ |___|  //____  >|___|  /|____/ 
-     \/     \/              \/      \/      \/        
+ _  __ _                         _            
+| |/ /| |                       | |           
+| ' / | |__    ___   _ __   ___ | |__   _   _ 
+|  <  | '_ \  / _ \ | '_ \ / __|| '_ \ | | | |
+| . \ | | | || (_) || | | |\__ \| | | || |_| |
+|_|\_\|_| |_| \___/ |_| |_||___/|_| |_| \__,_|
+                                              
+                                              
 
                      - RevoltSecurities
 
-                                                              Khonshu – A stealthy, concurrent port scanner written in asynchronous python that crafted for speed and accuracy.                                                               
+                                                                             Khonshu – A stealthy, concurrent Python port scanner crafted for speed and accuracy.                                                                             
 
 [DEFAULT FLAGS]
 ╭────────────┬────────────────────────────────────────╮
@@ -196,21 +197,21 @@ uv tool upgrade khonshu
 ╰─────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────╯
 
 [CONFIGURATION]
-╭──────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ Flag                     │ Description                                                                                                │
-├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ -scan, --scan-type       │ type of port scan we need to do (supports: connect,syn,ack,xmas,null,fix,udp,windows and default: connect) │
-├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ -all-ips, --scan-all-ips │ scan all ips of associated DNS record of the domain                                                        │
-├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ -passive, --passive      │ run passive open port scanning using shodan Internet DB API                                                │
-├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ -il, --interface-list    │ display the list of available interfaces                                                                   │
-├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ -i, --interface          │ network interface to use for port scan                                                                     │
-├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ -resolver, --resolver    │ custom DNS resolver to use for dns resolution                                                              │
-╰──────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────┬─────────────────────────────────────────────────────────────╮
+│ Flag                     │ Description                                                 │
+├──────────────────────────┼─────────────────────────────────────────────────────────────┤
+│ -scan, --scan-type       │ type of port scan we need to do (supports: connect,syn)     │
+├──────────────────────────┼─────────────────────────────────────────────────────────────┤
+│ -all-ips, --scan-all-ips │ scan all ips of associated DNS record of the domain         │
+├──────────────────────────┼─────────────────────────────────────────────────────────────┤
+│ -passive, --passive      │ run passive open port scanning using shodan Internet DB API │
+├──────────────────────────┼─────────────────────────────────────────────────────────────┤
+│ -il, --interface-list    │ display the list of available interfaces                    │
+├──────────────────────────┼─────────────────────────────────────────────────────────────┤
+│ -i, --interface          │ network interface to use for port scan                      │
+├──────────────────────────┼─────────────────────────────────────────────────────────────┤
+│ -resolver, --resolver    │ custom DNS resolver to use for dns resolution               │
+╰──────────────────────────┴─────────────────────────────────────────────────────────────╯
 
 [OPTIMIZATION]
 ╭─────────────────┬────────────────────────────────────────────────────────╮
@@ -219,24 +220,29 @@ uv tool upgrade khonshu
 │ -to, --timeout  │ seconds to wait for port scanning timeout (default: 1) │
 ├─────────────────┼────────────────────────────────────────────────────────┤
 │ -retry, --retry │ number of retries for open port scanning               │
+├─────────────────┼────────────────────────────────────────────────────────┤
+│ -ping, --ping   │ ping and verify host for port scan (default: false)    │
 ╰─────────────────┴────────────────────────────────────────────────────────╯
 
 [DEBUG]
-╭─────────────────────┬────────────────────────────────────────────╮
-│ Flag                │ Description                                │
-├─────────────────────┼────────────────────────────────────────────┤
-│ -hc, --health-check │ run the health check for the khonshu       │
-├─────────────────────┼────────────────────────────────────────────┤
-│ -debug, --debug     │ display the debugging information          │
-├─────────────────────┼────────────────────────────────────────────┤
-│ -verbose, --verbose │ increase the verbosity of khonshu          │
-├─────────────────────┼────────────────────────────────────────────┤
-│ -version, --version │ shows the version of the khonshu           │
-├─────────────────────┼────────────────────────────────────────────┤
-│ -silent, --silent   │ shows only the port scanning results       │
-├─────────────────────┼────────────────────────────────────────────┤
-│ -nc, --no-color     │ disables the colored output of the khonshu │
-╰─────────────────────┴────────────────────────────────────────────╯
+╭─────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Flag                │ Description                                                                                                                   │
+├─────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -hc, --health-check │ run the health check for the khonshu                                                                                          │
+├─────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -debug, --debug     │ display the debugging information (debug option is specially for contributors and devs to understand the workflow of khonshu) │
+├─────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -verbose, --verbose │ increase the verbosity of khonshu                                                                                             │
+├─────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -version, --version │ shows the version of the khonshu                                                                                              │
+├─────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -silent, --silent   │ shows only the port scanning results                                                                                          │
+├─────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -stats, --stats     │ logs the progress of the khonshu                                                                                              │
+├─────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ -nc, --no-color     │ disables the colored output of the khonshu                                                                                    │
+╰─────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
 ```
 ---
 
@@ -350,11 +356,8 @@ Khonshu provides comprehensive host discovery capabilities to determine which ho
 #### Basic Host Discovery:
 
 ```bash
-# Perform only host discovery (skip port scanning)
-khonshu -host example.com -Sn
-
 # Enable host discovery before port scanning
-khonshu -host example.com -En
+khonshu -host example.com -En -Sn
 
 # Skip host discovery and scan directly
 khonshu -host example.com -Pn
@@ -424,9 +427,6 @@ khonshu -host example.com -En -Sn -tcp-syn -verbose
 ```bash
 # Discover all hosts in subnet
 khonshu -host 192.168.1.0/24 -En -Sn -arp
-
-# Discover hosts with custom interface
-khonshu -host 10.0.0.0/24 -En -Sn -icmp-ping -i eth0
 ```
 
 #### Discovery with Output:
@@ -453,3 +453,69 @@ khonshu -host example.com -En -Sn -tcp-syn -retry 3 -to 5
 ```
 
 > **Important**: Most discovery methods require the combination of `-En` (enable discovery) and `-Sn` (host discovery mode) flags. ICMP and raw socket operations may require root/administrator privileges. Use `-Pn` to skip discovery if you know hosts are alive but not responding to pings.
+
+---
+
+### Using Khonshu as a Library
+
+This section explains how to embed **Khonshu** into Python projects and leverage its high-performance scanning pipeline programmatically. It includes usage of the scanner, Request/Response objects, combined Pyrunner execution, and best practices.
+
+> Notes:
+>
+> * `uvloop` is recommended on POSIX systems for performance.
+> * Elevated privileges may be required for some scanning features.
+
+---
+
+**Using Scanner, Request, and Response**
+
+```python
+import asyncio
+from khonshu import AsyncConnectScanner, Request, Response
+
+async def run_scanner():
+    req = Request(ip='192.168.1.1', port=80)
+    scanner = AsyncConnectScanner(timeout=2)
+    resp: Response = await scanner.scan(req)
+
+    if resp.status == "open":
+        print(f"Port {resp.port} is open on {resp.ip}")
+    else:
+        print(f"Port {resp.port} is closed on {resp.ip}")
+
+asyncio.run(run_scanner())
+```
+
+---
+
+**Using Pyrunner with Request/Response**
+
+```python
+import asyncio
+from khonshu import Settings, Pyrunner
+
+async def run_pyrunner():
+    args = Settings(
+        concurrency=50,
+        rate_limit=200,
+        timeout=2,
+        retry=1,
+        json=True,
+        ports="80,443",
+        scan_type="connect",
+    )
+
+    runner = Pyrunner(args)
+    runner.inputer = 'targets.txt'
+
+    try:
+        await runner.sprint()
+    finally:
+        await runner.cleanup()
+
+asyncio.run(run_pyrunner())
+o.run(main())
+```
+
+---
+Developed with 💙 by the RevoltSecurities Team.
