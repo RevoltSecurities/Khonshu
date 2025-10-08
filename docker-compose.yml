@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  khonshu:
+    build: .
+    container_name: khonshu-scanner
+    network_mode: host
+    user: root
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./output:/app/output
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["--help"]
+    restart: "no"
